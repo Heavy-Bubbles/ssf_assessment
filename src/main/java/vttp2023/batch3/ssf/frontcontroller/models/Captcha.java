@@ -8,6 +8,7 @@ public class Captcha implements Serializable{
     private int firstRandomNumber;
     private int secondRandomNumber;
     private int total;
+    private int answer;
     
     public int getFirstRandomNumber() {
         return firstRandomNumber;
@@ -32,6 +33,12 @@ public class Captcha implements Serializable{
         this.firstRandomNumber = random.nextInt(50 + 1 - 1) + 1;
         this.secondRandomNumber = random.nextInt(50 + 1 - 1) + 1;
         this.total = firstRandomNumber + secondRandomNumber;
+    }
+    public int getAnswer() {
+        return answer;
+    }
+    public void setAnswer(int answer) {
+        this.answer = answer;
     }
 
     

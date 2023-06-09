@@ -54,9 +54,9 @@ public class FrontController {
 
 			user.setErrorCount(user.getErrorCount() + 1);
 			session.setAttribute("user", user);
-			System.out.println(user.getErrorCount());
 			if (user.getErrorCount() >= 3){
 				authService.disableUser(user.getUsername());
+				session.invalidate();
 			}
 			ObjectError err = new ObjectError("globalError", "Invalid Username/Password!");
 			bindingResult.addError(err);
@@ -65,6 +65,7 @@ public class FrontController {
 			return "view0";
 
 	}
+
 
 	@GetMapping(path = "/logout")
 	public String logout(User user, Model model, HttpSession session){

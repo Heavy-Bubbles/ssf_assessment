@@ -41,7 +41,8 @@
 					<span data-th-each="err: ${#fields.errors('global')}" data-th-text="${err}" style="color: red;"></span>
 					<span data-th-object="${captcha}">
 						What is <span data-th-text="*{firstRandomNumber}"></span> + <span data-th-text="*{secondRandomNumber}"></span>?
-						<input type="number">
+						<input type="number" data-th-field="*{answer}">
+						<span th:if="${errorCaptcha != null}">[[${errorCaptcha}]]</span>
 					</span>	
 				</tr>
 				<tr>
