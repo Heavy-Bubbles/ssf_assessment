@@ -11,33 +11,46 @@
 	<body>
 
 		<h2>Please Login</h2>
-
-		<table>
-			<tr>
-				<td> 
-					<label for="username">Username:</label> 
-				</td>
-				<td>
-					<input type="text" id="username" size="30" 
-							placeholder="Please type in your username" >
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="password">Password:</label>
-				</td>
-				<td>
-					<input type="password" id="password" size="30" 
-							placeholder="Please type in your password">
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<button>Login</button>
-				</td>
-			</tr>
-		</table>
-		
+		<form method="post" data-th-action="@{/login}" data-th-object="${user}">
+			<table>
+				<tr>
+					<td> 
+						<label for="username">Username:</label> 
+					</td>
+					<td>
+						<input type="text" id="username" size="30" 
+								placeholder="Please type in your username"data-th-field="*{username}">
+					</td>
+					<td>
+						<span data-th-if="${#fields.hasErrors('username')}" data-th-errors="*{username}" style="color: red;"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="password">Password:</label>
+					</td>
+					<td>
+						<input type="password" id="password" size="30" 
+								placeholder="Please type in your password" data-th-field="*{password}">
+					</td>
+					<td>
+						<span data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}" style="color: red;"></span>
+					</td>
+				</tr>
+				<tr data-th-if="${#fields.hasErrors('global')}">
+					<span data-th-each="err: ${#fields.errors('global')}" data-th-text="${err}" style="color: red;"></span>
+					<span data-th-object="${captcha}">
+						What is <span data-th-text="*{firstRandomNumber}"></span> + <span data-th-text="*{secondRandomNumber}"></span>?
+						<input type="number">
+					</span>	
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button type="submit">Login</button>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</body>
 </html>
