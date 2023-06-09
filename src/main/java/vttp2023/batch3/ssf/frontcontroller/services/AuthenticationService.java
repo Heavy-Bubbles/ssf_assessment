@@ -17,8 +17,7 @@ public class AuthenticationService {
 	@Autowired
 	private AuthenticationRepository authRepo;
 
-	@Value("${AUTHENTICATE_URL}")
-	private String authenticateURL;
+	private final String authenticateURL = "https://authservice-production-e8b2.up.railway.app/api/authenticate";
 
 	// TODO: Task 2
 	// DO NOT CHANGE THE METHOD'S SIGNATURE
